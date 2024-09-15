@@ -69,7 +69,7 @@ public class AccesoAleatorio2 {
 					}              
 	                
 	            } catch (NumberFormatException e) {
-	                System.out.println("El peso del personaje debe ser un número enterno");
+	                System.out.println("El peso del personaje debe ser un número entero");
 	            }
 	        }
 		} catch (FileNotFoundException e) {

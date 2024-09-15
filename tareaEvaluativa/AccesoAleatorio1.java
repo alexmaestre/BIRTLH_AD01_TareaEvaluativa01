@@ -28,6 +28,7 @@ public class AccesoAleatorio1 {
 		if(fichero.exists()){ //Borramos el archivo si ya existe
 			fichero.delete();
 		}
+		
 		//Instanciamos un objeto RandomAccessFile basado en el objeto fichero, empleando un bloque Try para manejar excepciones
 		try (RandomAccessFile raf = new RandomAccessFile(fichero, "rw")){
 		

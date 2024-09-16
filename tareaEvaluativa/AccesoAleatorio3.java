@@ -33,7 +33,7 @@ public class AccesoAleatorio3 {
 		try (RandomAccessFile raf = new RandomAccessFile(new File(RUTA), "r")){
 			// Primeramente tenemos que cotejar si el tipo existe. Como el archivo es dinámico y pueden agregarse tipos en el futuro, nos valemos de una función que coteje si existe el tipo
 			if(tipoIntroducido.isEmpty()) {
-	            System.out.println("El tipo no puede estar  vacío");
+	            System.out.println("El tipo no puede estar vacío");
 	        }else {
 	            /* Para recorrer los datos usamos un bucle for con una variable iteradora que se repita tantas veces como personajes tenemos almacenados
 	            Para saber cuantos personajes tenemos almacenados creamos una variable entero llamada totalPersonjas que es el resultado de castear a entero la división

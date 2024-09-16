@@ -10,7 +10,6 @@ public class AccesoAleatorio1 {
 	private static final String RUTA = "src" + File.separator + "tareaEvaluativa" + File.separator + "Marvel.dat"; //Definimos constante con ruta del fichero de datos de personajes
 	/*Para la serialización usaremos una estructura de 32 caracteres para las cadenas, resultando un total de 268 caracteres de serialización por personaje si tenemos en cuenta que son 3
 	enteros y 4 cadenas por entidad. Definimos dos constantes para manejar tanto la longitud total como la longitud de las cadenas. */
-	private static final int LONGITUD_TOTAL = 268; 
 	private static final int LONGITUD_CADENAS = 32; 
 	  
 	public static void main(String[] args) throws IOException {   
@@ -30,12 +29,8 @@ public class AccesoAleatorio1 {
 		}
 		
 		//Instanciamos un objeto RandomAccessFile basado en el objeto fichero, empleando un bloque Try para manejar excepciones
-		try (RandomAccessFile raf = new RandomAccessFile(fichero, "rw")){
-		
-			int posicion = 0; //Instanciamos un entero auxiliar llamado posición para situar el puntero del fichero no secuenciable	
+		try (RandomAccessFile raf = new RandomAccessFile(fichero, "rw")){		
 			for (int i=0;i<ids.length; i++){ //recorremos ids de la información dada
-				posicion = i*LONGITUD_TOTAL; //Calculamos la posición donde tendremos que ponernos en función del nº de iteración multiplicaa por la longitud de información de cada personaje
-				raf.seek(posicion); //Nos movemos a la posición
 				//Guardamos los atributos usando writeInt cuando son enteros y la función guardarString cuando son cadena
 				raf.writeInt(ids[i]); 
 				guardarString(dnis[i], raf); 

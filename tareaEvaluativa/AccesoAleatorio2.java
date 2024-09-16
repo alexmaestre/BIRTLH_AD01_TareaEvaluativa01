@@ -45,15 +45,13 @@ public class AccesoAleatorio2 {
 	                int totalPersonajes = (int) raf.length()/LONGITUD_TOTAL;
 	                for(var i=1; i<=totalPersonajes; i++) {
 	                	int posicionDni = (i-1)*LONGITUD_TOTAL + POSICION_DNI; //Instanciamos un entero auxiliar que almacena la posición del DNI del personaje iterado
-	                	raf.seek(posicionDni); //Nos movemos a la posición del dni del personaje
-						String dni = leerString(raf); //Usamos la función privada leerString para leer el dni del personaje
+						String dni = leerString(raf,posicionDni); //Usamos la función privada leerString para leer el dni del personaje en función de su posición
 						if(dni.equals(dniIntroducido)) {
 		                	int posicionPeso = (i-1)*LONGITUD_TOTAL + POSICION_PESO; //Instanciamos un entero auxiliar que almacena la posición del peso del personaje iterado
 							raf.seek(posicionPeso); //Nos movemos a la posición del nombre					
 							int pesoAntiguo = raf.readInt(); //Almacenamos en una instancia de numero entero llamada pesoAntiguo el entero del RandomAccesFile en la posición
 							int posicionNombre = (i-1)*LONGITUD_TOTAL + POSICION_NOMBRE; //Instanciamos un entero auxiliar que almacena la posición del peso del personaje iterado
-							raf.seek(posicionNombre); //Nos movemos a la posición del nombre del personaje
-							String nombre = leerString(raf); //Usamos la función privada leerString para leer el nombre del personaje
+							String nombre = leerString(raf,posicionNombre); //Usamos la función privada leerString para leer el nombre del personaje en función de su posición
 							String estado = "se mantiene en su peso anterior"; //Instanciamos una cadena estado que almacenará que parte final del mensaje corresponde al caso
 							if( pesoAntiguo > peso) {
 								estado = "ha adelgazado " + (pesoAntiguo-peso) + " kilos";
@@ -61,7 +59,7 @@ public class AccesoAleatorio2 {
 								estado = "ha engordado " + (peso-pesoAntiguo) + " kilos";
 							}
 							System.out.println(nombre + " " + estado);
-							existe = true;
+							existe = true; 
 						}
 	                }
 					if(!existe) { //Si no se ha encontrado ningún personaje con ese DNI nos muetra un mensaje de aviso
@@ -81,7 +79,8 @@ public class AccesoAleatorio2 {
 	}
 	
 	//La función privada leerString recibe un RandomAccessFile y extrae la cadena que hay en esa posición, teniendo en cuenta la longitud escogida para las cadenas en la estructura de datos
-    private static String leerString(RandomAccessFile raf) throws IOException {
+    private static String leerString(RandomAccessFile raf, int posicion) throws IOException {
+    	raf.seek(posicion);
     	char [] data = new char[LONGITUD_CADENAS]; //Instanciamos un arreglo de caracteres con dimensión de 32
 		for (int i=0;i<LONGITUD_CADENAS;i++) { //Iteramos hasta el número máximo de caracteres guardando en el arreglo los datos del RandomAccessFile
 			data[i]=raf.readChar();

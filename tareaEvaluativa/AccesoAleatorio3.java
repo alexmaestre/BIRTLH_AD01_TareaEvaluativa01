@@ -64,7 +64,7 @@ public class AccesoAleatorio3 {
 				raf.close();
 	        }   						
 		} catch (FileNotFoundException e) {
-  	      System.out.println("El archivo a comprobar no existe");
+  	      System.out.println("El archivo de datos no existe");
   	    } catch (IOException e) {
   	      System.out.println("Error de E/S: " + e.getMessage());
   	    }  
